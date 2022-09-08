@@ -9,9 +9,9 @@ USE carRentalDB;
 -- ROLES
 -- users roles
 -- ----------------------------------------------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS roles
+CREATE TABLE IF NOT EXISTS role
 (
-    id   INTEGER     NOT NULL,
+    id   INTEGER     NOT NULL AUTO_INCREMENT,
     name VARCHAR(10) NOT NULL,
 
     PRIMARY KEY (id),
@@ -20,10 +20,43 @@ CREATE TABLE IF NOT EXISTS roles
 
 
 -- ----------------------------------------------------------------------------------------------------------------
+-- PRIVILEGE
+-- users privileges
+-- ----------------------------------------------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS privilege
+(
+    id   INTEGER     NOT NULL AUTO_INCREMENT,
+    name VARCHAR(10) NOT NULL,
+
+    PRIMARY KEY (id),
+    UNIQUE (name)
+) DEFAULT CHARSET utf8;
+
+
+-- --------------------------------------------------------------
+-- ROLES_PRIVILEGES
+-- relation between roles and privileges
+-- --------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS roles_privileges
+(
+    role_id INTEGER NOT NULL,
+    privilege_id INTEGER NOT NULL,
+
+    INDEX (role_id),
+    FOREIGN KEY (role_id)
+        REFERENCES role (id),
+
+    INDEX (privilege_id),
+    FOREIGN KEY (privilege_id)
+        REFERENCES privilege (id)
+) DEFAULT CHARSET utf8;
+
+
+-- ----------------------------------------------------------------------------------------------------------------
 -- USERS
 -- users information
 -- ----------------------------------------------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS users
+CREATE TABLE IF NOT EXISTS user
 (
     id         INTEGER     NOT NULL AUTO_INCREMENT,
     login      VARCHAR(25) NOT NULL,
@@ -32,25 +65,37 @@ CREATE TABLE IF NOT EXISTS users
     first_name VARCHAR(25) NOT NULL,
     last_name  VARCHAR(25) NOT NULL,
     passport   VARCHAR(10) DEFAULT NULL,
-    role_id    INTEGER     NOT NULL,
-    is_enable  BOOLEAN DEFAULT false,
+    is_enable  BOOLEAN     DEFAULT false,
 
     PRIMARY KEY (id),
-    UNIQUE (login, email),
-
-    FOREIGN KEY (role_id)
-        REFERENCES roles (id)
-        ON DELETE CASCADE
-        ON UPDATE RESTRICT
+    UNIQUE (login, email)
 ) DEFAULT CHARSET utf8;
 
+
+-- --------------------------------------------------------------
+-- USERS_ROLES
+-- relation between users and roles
+-- --------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS users_roles
+(
+    user_id INTEGER NOT NULL,
+    role_id INTEGER NOT NULL,
+
+    INDEX (user_id),
+    FOREIGN KEY (user_id)
+        REFERENCES user (id),
+
+    INDEX (role_id),
+    FOREIGN KEY (role_id)
+        REFERENCES role (id)
+) DEFAULT CHARSET utf8;
 
 -- ----------------------------------------------------------------------------------------------------------------
 -- CAR CLASSIFICATION
 -- ----------------------------------------------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS car_classifications
+CREATE TABLE IF NOT EXISTS car_classification
 (
-    id               INTEGER     NOT NULL,
+    id               INTEGER     NOT NULL AUTO_INCREMENT,
     name             VARCHAR(25) NOT NULL,
     seating_capacity INTEGER     NOT NULL,
 
@@ -63,9 +108,9 @@ CREATE TABLE IF NOT EXISTS car_classifications
 -- CARS
 -- cars information
 -- ----------------------------------------------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS cars
+CREATE TABLE IF NOT EXISTS car
 (
-    id                    INTEGER              NOT NULL,
+    id                    INTEGER              NOT NULL AUTO_INCREMENT,
     automobile_factory    VARCHAR(25)          NOT NULL,
     model                 VARCHAR(25)          NOT NULL,
     year                  INTEGER(4)           NOT NULL,
@@ -75,7 +120,7 @@ CREATE TABLE IF NOT EXISTS cars
 
     PRIMARY KEY (id),
     FOREIGN KEY (car_classification_id)
-        REFERENCES car_classifications (id)
+        REFERENCES car_classification (id)
         ON DELETE CASCADE
         ON UPDATE RESTRICT
 ) DEFAULT CHARSET utf8;
@@ -86,7 +131,7 @@ CREATE TABLE IF NOT EXISTS cars
 -- ----------------------------------------------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS order_status
 (
-    id   INTEGER     NOT NULL,
+    id   INTEGER     NOT NULL AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
 
     PRIMARY KEY (id)
@@ -106,7 +151,7 @@ CREATE TABLE IF NOT EXISTS orders
 
     PRIMARY KEY (id),
     FOREIGN KEY (user_id)
-        REFERENCES users (id)
+        REFERENCES user (id)
         ON DELETE CASCADE
         ON UPDATE RESTRICT,
     FOREIGN KEY (order_status_id)
@@ -118,9 +163,9 @@ CREATE TABLE IF NOT EXISTS orders
 
 -- --------------------------------------------------------------
 -- ORDERS_CAR
--- relation between order and car
+-- relation between orders and car
 -- --------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS order_car
+CREATE TABLE IF NOT EXISTS orders_cars
 (
     order_id INTEGER NOT NULL,
     car_id   INTEGER NOT NULL,
@@ -131,21 +176,5 @@ CREATE TABLE IF NOT EXISTS order_car
 
     INDEX (car_id),
     FOREIGN KEY (car_id)
-        REFERENCES cars (id)
+        REFERENCES car (id)
 ) DEFAULT CHARSET utf8;
-
-
-/*==================================================INSERT QUERIES==================================================*/
-
-INSERT INTO roles (id, name) VALUE (1, 'admin');
-INSERT INTO roles (id, name) VALUE (2, 'manager');
-INSERT INTO roles (id, name) VALUE (3, 'user');
-
-INSERT INTO order_status
-VALUES (0, 'opened');
-INSERT INTO order_status
-VALUES (1, 'confirmed');
-INSERT INTO order_status
-VALUES (2, 'paid');
-INSERT INTO order_status
-VALUES (3, 'closed');
