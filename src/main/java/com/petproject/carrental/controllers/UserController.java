@@ -1,7 +1,7 @@
 package com.petproject.carrental.controllers;
 
 import com.petproject.carrental.models.user.User;
-import com.petproject.carrental.services.UserService;
+import com.petproject.carrental.services.UserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    private UserService userService;
+    private UserDetailsService userService;
 
     @RequestMapping("/register")
     public void register(@RequestBody User user) {
