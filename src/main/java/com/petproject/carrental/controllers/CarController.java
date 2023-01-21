@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/cars")
+@RequestMapping("/car")
 public class CarController {
 
     private CarDetailsService carDetailsService;

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
 
     private UserDetailsService userService;
