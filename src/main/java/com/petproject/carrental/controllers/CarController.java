@@ -43,4 +43,6 @@ public class CarController {
     public List<Car> getCarByAutomobileFactory(String automobileFactory) {
         return carDetailsService.findCarsByAutomobileFactory(automobileFactory);
     }
+
+
 }

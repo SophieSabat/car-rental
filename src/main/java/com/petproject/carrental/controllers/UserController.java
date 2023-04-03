@@ -20,9 +20,4 @@ public class UserController {
             userService.save(user);
         }
     }
-
-    @GetMapping("/getAllUsers")
-    public List<User> getAllUsers() {
-        return userService.findAll();
-    }
 }

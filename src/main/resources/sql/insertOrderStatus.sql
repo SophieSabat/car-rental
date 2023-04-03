@@ -1,7 +1,7 @@
 USE carRentalDB;
 
 INSERT INTO order_status
-VALUES (0, 'opened'),
-       (1, 'confirmed'),
-       (2, 'paid'),
-       (3, 'closed');
+VALUES (1, 'opened'),
+       (2, 'confirmed'),
+       (3, 'paid'),
+       (4, 'closed');

@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS privilege
 -- --------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS roles_privileges
 (
-    role_id INTEGER NOT NULL,
+    role_id      INTEGER NOT NULL,
     privilege_id INTEGER NOT NULL,
 
     INDEX (role_id),
@@ -58,14 +58,15 @@ CREATE TABLE IF NOT EXISTS roles_privileges
 -- ----------------------------------------------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS user
 (
-    id         INTEGER     NOT NULL AUTO_INCREMENT,
-    login      VARCHAR(25) NOT NULL,
-    password   VARCHAR(10) NOT NULL,
-    email      VARCHAR(25) NOT NULL,
-    first_name VARCHAR(25) NOT NULL,
-    last_name  VARCHAR(25) NOT NULL,
-    passport   VARCHAR(10) DEFAULT NULL,
-    is_enable  BOOLEAN     DEFAULT false,
+    id              INTEGER     NOT NULL AUTO_INCREMENT,
+    login           VARCHAR(25) NOT NULL,
+    password        VARCHAR(10) NOT NULL,
+    email           VARCHAR(25) NOT NULL,
+    first_name      VARCHAR(25) NOT NULL,
+    last_name       VARCHAR(25) NOT NULL,
+    phone_number    VARCHAR(13) NOT NULL,
+    passport_number VARCHAR(10) DEFAULT NULL,
+    is_enable       BOOLEAN     DEFAULT false,
 
     PRIMARY KEY (id),
     UNIQUE (login, email)

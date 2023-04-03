@@ -1,7 +1,9 @@
 package com.petproject.carrental.models.user;
 
-import com.sun.tools.javac.util.List;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -28,6 +30,7 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id")
     )
     private Collection<Privilege> privileges;
+
     public Role(String name) {
         this.name = name;
     }
