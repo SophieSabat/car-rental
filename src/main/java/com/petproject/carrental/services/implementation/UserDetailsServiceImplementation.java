@@ -15,20 +15,19 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
     private UserDAO userDAO;
 
     @Override
-    public void save(User user) {
+    public void addUser(User user) {
         if (user != null) {
-            userDAO.saveUser(user);
+            userDAO.save(user);
         }
     }
 
     @Override
-    public List<User> findAll() {
-        return userDAO.findAllUsers();
+    public List<User> getAllUsers() {
+        return userDAO.getAll();
     }
 
     @Override
-    public User findUserByLogin(String login) {
-
+    public User getUserByLogin(String login) {
         return null;
     }
 }

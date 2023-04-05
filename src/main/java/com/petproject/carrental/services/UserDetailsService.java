@@ -8,9 +8,9 @@ import java.util.List;
 @Service
 public interface UserDetailsService {
 
-    void save(User user);
+    void addUser(User user);
 
-    List<User> findAll();
+    List<User> getAllUsers();
 
-    User findUserByLogin(String login);
+    User getUserByLogin(String login);
 }

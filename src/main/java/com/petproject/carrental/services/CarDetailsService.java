@@ -9,9 +9,9 @@ import java.util.List;
 public interface CarDetailsService {
     void save(Car car);
 
-    List<Car> findAllCars();
+    List<Car> getAllCars();
 
-    List<Car> findCarsByModel(String model);
+    List<Car> getCarsByModel(String model);
 
-    List<Car> findCarsByAutomobileFactory(String automobileFactory);
+    List<Car> getCarsByAutomobileFactory(String automobileFactory);
 }

@@ -8,21 +8,34 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Repository
-public class CarDAO {
+public class CarDAO implements Dao<Car> {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Override
+    public Optional<Car> get(long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Car> getAll() {
+        return entityManager.createQuery("select c from Car c", Car.class).getResultList();
+    }
+
     @Transactional
-    public void saveCar(Car car) {
+    @Override
+    public void save(Car car) {
         entityManager.persist(car);
     }
 
-    public List<Car> findAllCars() {
-        return entityManager.createQuery("select c from Car c", Car.class).getResultList();
+    @Override
+    public void delete(Car car) {
+
     }
 
     public List<Car> findCarsByAutomobileFactory(String automobileFactory) {

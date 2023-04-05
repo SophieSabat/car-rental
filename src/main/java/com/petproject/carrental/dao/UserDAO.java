@@ -5,32 +5,35 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Parameter;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class UserDAO {
+public class UserDAO implements Dao<User> {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
-    public void saveUser(User user) {
-        entityManager.persist(user);
+    @Override
+    public Optional<User> get(long id) {
+        return Optional.empty();
     }
 
-    public List<User> findAllUsers() {
+    @Override
+    public List<User> getAll() {
         return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
 
-    public User findUserByLogin(String login) {
-        Set<Parameter<?>> parameters = entityManager.createQuery("select * from User where User .login = " + login).getParameters();
-        
-        User user = new User();
-        return user;
+    @Transactional
+    public void save(User user) {
+        entityManager.persist(user);
+    }
+
+    @Override
+    public void delete(User user) {
+
     }
 }

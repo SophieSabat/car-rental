@@ -31,17 +31,17 @@ public class CarController {
 
     @GetMapping("/getAllCars")
     public List<Car> getAllCars() {
-        return carDetailsService.findAllCars();
+        return carDetailsService.getAllCars();
     }
 
     @GetMapping("/findCarByModel")
     public List<Car> getCarByModel(String model) {
-        return carDetailsService.findCarsByModel(model);
+        return carDetailsService.getCarsByModel(model);
     }
 
     @GetMapping("/findCarByAutomobileFactory")
     public List<Car> getCarByAutomobileFactory(String automobileFactory) {
-        return carDetailsService.findCarsByAutomobileFactory(automobileFactory);
+        return carDetailsService.getCarsByAutomobileFactory(automobileFactory);
     }
 
 

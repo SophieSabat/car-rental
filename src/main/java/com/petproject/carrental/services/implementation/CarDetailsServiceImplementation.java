@@ -16,22 +16,22 @@ public class CarDetailsServiceImplementation implements CarDetailsService {
     @Override
     public void save(Car car) {
         if (car != null) {
-            carDAO.saveCar(car);
+            carDAO.save(car);
         }
     }
 
     @Override
-    public List<Car> findAllCars() {
-        return carDAO.findAllCars();
+    public List<Car> getAllCars() {
+        return carDAO.getAll();
     }
 
     @Override
-    public List<Car> findCarsByModel(String model) {
+    public List<Car> getCarsByModel(String model) {
         return carDAO.findCarsByModel(model);
     }
 
     @Override
-    public List<Car> findCarsByAutomobileFactory(String automobileFactory) {
+    public List<Car> getCarsByAutomobileFactory(String automobileFactory) {
         return carDAO.findCarsByAutomobileFactory(automobileFactory);
     }
 }
