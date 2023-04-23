@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapperImplementation implements UserMapper {
 
-
     @Override
     public User toUser(UserDTO userDTO) {
         if (userDTO == null) {
