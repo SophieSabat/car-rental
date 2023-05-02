@@ -1,5 +1,7 @@
 package com.petproject.carrental.dao;
 
+import com.petproject.carrental.models.user.User;
+
 import java.util.List;
 import java.util.Optional;
 

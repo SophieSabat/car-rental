@@ -15,7 +15,6 @@ public class UserController {
     private final UserDetailsService userService;
     private final UserMapperImplementation mapper;
 
-    //    @PostMapping
     @RequestMapping(value = "/register")
     public void register(@RequestBody UserDTO userDTO) {
         if (userDTO != null) {
