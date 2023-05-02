@@ -1,5 +1,6 @@
 package com.petproject.carrental.services;
 
+import com.petproject.carrental.dto.UserDTO;
 import com.petproject.carrental.models.user.User;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +13,5 @@ public interface UserDetailsService {
 
     List<User> getAllUsers();
 
-    User getUserByLogin(String login);
+    UserDTO findByEmail(String email);
 }

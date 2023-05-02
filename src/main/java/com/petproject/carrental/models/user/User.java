@@ -18,7 +18,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String login;
     private String password;
     private String email;
     @Column(name = "first_name")
@@ -40,8 +39,7 @@ public class User {
     )
     private Collection<Role> roles;
 
-    public User(String login, String password, String email, String firstName, String lastName, String phoneNumber, String passportNumber) {
-        this.login = login;
+    public User(String password, String email, String firstName, String lastName, String phoneNumber, String passportNumber) {
         this.password = password;
         this.email = email;
         this.firstName = firstName;

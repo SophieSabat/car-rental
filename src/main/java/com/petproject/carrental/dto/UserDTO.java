@@ -11,16 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDTO {
     private int id;
-    private String login;
     private String password;
     private String email;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String passportNumber;
+    private String token;
 
-    public UserDTO(String login, String password, String email, String firstName, String lastName, String phoneNumber, String passportNumber) {
-        this.login = login;
+    public UserDTO(String password, String email, String firstName, String lastName, String phoneNumber, String passportNumber) {
         this.password = password;
         this.email = email;
         this.firstName = firstName;

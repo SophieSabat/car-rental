@@ -1,5 +1,6 @@
 package com.petproject.carrental.mapper;
 
+import com.petproject.carrental.dto.SingUpDTO;
 import com.petproject.carrental.dto.UserDTO;
 import com.petproject.carrental.models.user.User;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,6 @@ public class UserMapperImplementation implements UserMapper {
         }
         User user = new User();
         user.setId(userDTO.getId());
-        user.setLogin(userDTO.getLogin());
         user.setPassword(userDTO.getPassword());
         user.setEmail(userDTO.getEmail());
         user.setFirstName(userDTO.getFirstName());
@@ -32,7 +32,6 @@ public class UserMapperImplementation implements UserMapper {
         }
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
-        userDTO.setLogin(user.getLogin());
         userDTO.setPassword(user.getPassword());
         userDTO.setEmail(user.getEmail());
         userDTO.setFirstName(user.getFirstName());
@@ -41,5 +40,10 @@ public class UserMapperImplementation implements UserMapper {
         userDTO.setPassportNumber(user.getPassportNumber());
 
         return userDTO;
+    }
+
+    @Override
+    public User singUpToUser(SingUpDTO userDTO) {
+        return null;
     }
 }

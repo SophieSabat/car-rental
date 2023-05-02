@@ -28,8 +28,9 @@ public class UserDAO implements Dao<User> {
     }
 
     @Transactional
-    public void save(User user) {
+    public User save(User user) {
         entityManager.persist(user);
+        return user;
     }
 
     @Override
@@ -37,5 +38,7 @@ public class UserDAO implements Dao<User> {
 
     }
 
-    
+    public Optional<User> findByEmail(String email) {
+        return null;
+    }
 }

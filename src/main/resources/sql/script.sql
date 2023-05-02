@@ -59,7 +59,6 @@ CREATE TABLE IF NOT EXISTS roles_privileges
 CREATE TABLE IF NOT EXISTS user
 (
     id              INTEGER     NOT NULL AUTO_INCREMENT,
-    login           VARCHAR(25) NOT NULL,
     password        VARCHAR(10) NOT NULL,
     email           VARCHAR(25) NOT NULL,
     first_name      VARCHAR(25) NOT NULL,
@@ -69,7 +68,7 @@ CREATE TABLE IF NOT EXISTS user
     is_enable       BOOLEAN     DEFAULT false,
 
     PRIMARY KEY (id),
-    UNIQUE (login, email)
+    UNIQUE (email)
 ) DEFAULT CHARSET utf8;
 
 

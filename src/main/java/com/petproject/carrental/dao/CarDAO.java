@@ -1,6 +1,7 @@
 package com.petproject.carrental.dao;
 
 import com.petproject.carrental.models.car.Car;
+import com.petproject.carrental.models.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -29,8 +30,9 @@ public class CarDAO implements Dao<Car> {
 
     @Transactional
     @Override
-    public void save(Car car) {
+    public User save(Car car) {
         entityManager.persist(car);
+        return null;
     }
 
     @Override
