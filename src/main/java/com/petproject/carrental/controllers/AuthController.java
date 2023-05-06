@@ -8,6 +8,7 @@ import com.petproject.carrental.services.implementation.UserDetailsServiceImplem
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ public class AuthController {
     private final UserDetailsServiceImplementation userDetailsServiceImplementation;
     private final UserAuthenticationProvider userAuthenticationProvider;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/login")
     public ResponseEntity<UserDTO> login(@RequestBody @Valid CredentialsDTO credentialsDTO) {
         UserDTO userDTO = userDetailsServiceImplementation.login(credentialsDTO);
@@ -28,6 +30,7 @@ public class AuthController {
         return ResponseEntity.ok(userDTO);
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/register")
     public ResponseEntity<UserDTO> register(@RequestBody @Valid SingUpDTO user) {
         UserDTO createdUser = userDetailsServiceImplementation.register(user);

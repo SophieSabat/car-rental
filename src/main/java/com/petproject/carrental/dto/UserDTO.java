@@ -19,6 +19,13 @@ public class UserDTO {
     private String passportNumber;
     private String token;
 
+    public UserDTO(String password, String email, String firstName, String lastName) {
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public UserDTO(String password, String email, String firstName, String lastName, String phoneNumber, String passportNumber) {
         this.password = password;
         this.email = email;
