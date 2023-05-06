@@ -1,9 +1,6 @@
 package com.petproject.carrental.models.user;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -39,12 +36,21 @@ public class User {
     )
     private Collection<Role> roles;
 
-    public User(String password, String email, String firstName, String lastName, String phoneNumber, String passportNumber) {
+    public User(String password, String email, String firstName, String lastName) {
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public User(String password, String email, String firstName, String lastName, String phoneNumber, String passportNumber, boolean isEnable, Collection<Role> roles) {
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.passportNumber = passportNumber;
+        this.isEnable = isEnable;
+        this.roles = roles;
     }
 }

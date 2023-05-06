@@ -1,7 +1,5 @@
 package com.petproject.carrental.dao;
 
-import com.petproject.carrental.models.user.User;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +9,7 @@ public interface Dao<T> {
 
     List<T> getAll();
 
-    User save(T t);
+    void save(T t);
 
     void delete(T t);
 }

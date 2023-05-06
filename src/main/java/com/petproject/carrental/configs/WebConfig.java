@@ -22,28 +22,23 @@ public class WebConfig {
     @Bean
     public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowCredentials(true);
-        configuration.addAllowedHeader("http://localhost:3000");
-        configuration.setAllowedHeaders(Arrays.asList(
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:3000");
+        config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
                 HttpHeaders.CONTENT_TYPE,
-                HttpHeaders.ACCEPT
-        ));
-        configuration.setAllowedMethods(Arrays.asList(
+                HttpHeaders.ACCEPT));
+        config.setAllowedMethods(Arrays.asList(
                 HttpMethod.GET.name(),
                 HttpMethod.POST.name(),
                 HttpMethod.PUT.name(),
-                HttpMethod.DELETE.name()
-        ));
-        configuration.setMaxAge(MAX_AGE);
-
-        source.registerCorsConfiguration("/**", configuration);
-
+                HttpMethod.DELETE.name()));
+        config.setMaxAge(MAX_AGE);
+        source.registerCorsConfiguration("/**", config);
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-        bean.setOrder(CORS_FILTER_ORDER);
 
+        bean.setOrder(CORS_FILTER_ORDER);
         return bean;
     }
-
 }

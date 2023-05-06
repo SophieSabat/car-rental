@@ -1,7 +1,6 @@
 package com.petproject.carrental.dao;
 
 import com.petproject.carrental.models.user.User;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@AllArgsConstructor
 public class UserDAO implements Dao<User> {
 
     @PersistenceContext
@@ -28,9 +26,8 @@ public class UserDAO implements Dao<User> {
     }
 
     @Transactional
-    public User save(User user) {
+    public void save(User user) {
         entityManager.persist(user);
-        return user;
     }
 
     @Override

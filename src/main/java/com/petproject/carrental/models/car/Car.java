@@ -8,7 +8,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
 @Table(name = "car")
 public class Car {

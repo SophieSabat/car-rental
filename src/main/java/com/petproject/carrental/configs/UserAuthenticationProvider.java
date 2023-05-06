@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+
 import com.petproject.carrental.dto.UserDTO;
 import com.petproject.carrental.services.implementation.UserDetailsServiceImplementation;
 import jakarta.annotation.PostConstruct;
@@ -21,10 +22,10 @@ import java.util.Date;
 @Component
 public class UserAuthenticationProvider {
 
-    private final UserDetailsServiceImplementation userDetailsServiceImplementation;
-
     @Value("${security.jwt.token.secret-key: secret-value}")
     private String secretKey;
+
+    private final UserDetailsServiceImplementation userDetailsServiceImplementation;
 
     @PostConstruct
     protected void init() {
