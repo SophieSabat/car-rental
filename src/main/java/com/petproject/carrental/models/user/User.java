@@ -1,26 +1,33 @@
 package com.petproject.carrental.models.user;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 
-@Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = "roles")
+@Entity
 @Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String password;
-    private String email;
+    @Column(name = "id", nullable = false)
+    private Long id;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email")
+    private String email;
+    private String password;
     @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "passport_number")
@@ -34,23 +41,13 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    private Collection<Role> roles;
+    private List<Role> roles;
 
-    public User(String password, String email, String firstName, String lastName) {
-        this.password = password;
-        this.email = email;
+    @JsonCreator
+    public User(@JsonProperty("firstName") String firstName, @JsonProperty("lastName") String lastName, @JsonProperty("email") String email, @JsonProperty("password") String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public User(String password, String email, String firstName, String lastName, String phoneNumber, String passportNumber, boolean isEnable, Collection<Role> roles) {
-        this.password = password;
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.passportNumber = passportNumber;
-        this.isEnable = isEnable;
-        this.roles = roles;
+        this.password = password;
     }
 }

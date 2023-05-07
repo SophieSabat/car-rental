@@ -1,25 +1,25 @@
 package com.petproject.carrental.models.order;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
-
-@Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Table(name = "orders")
+@Entity
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    @Column(name = "id", nullable = false)
+    private Long id;
     @Column(name = "order_number")
-    int orderNumber;
+    private int orderNumber;
     @Column(name = "user_id")
-    int userId;
+    private int userId;
     @Column(name = "order_status_id")
-    int orderStatusId;
+    private int orderStatusId;
 
     public Order(int orderNumber, int userId, int orderStatusId) {
         this.orderNumber = orderNumber;

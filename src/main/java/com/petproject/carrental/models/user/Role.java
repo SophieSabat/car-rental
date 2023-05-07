@@ -1,11 +1,8 @@
 package com.petproject.carrental.models.user;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
-import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
@@ -17,8 +14,10 @@ import java.util.Collection;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String name;
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles")
     private Collection<User> users;

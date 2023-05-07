@@ -1,23 +1,21 @@
 package com.petproject.carrental.models.user;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
-import javax.persistence.*;
 import java.util.Collection;
 
-@Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = "roles")
+@Entity
 @Table(name = "privilege")
 public class Privilege {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id", nullable = false)
+    private Long id;
     private String name;
 
     @ManyToMany(mappedBy = "privileges")

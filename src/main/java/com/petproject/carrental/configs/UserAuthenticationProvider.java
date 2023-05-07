@@ -4,7 +4,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-
 import com.petproject.carrental.dto.UserDTO;
 import com.petproject.carrental.services.implementation.UserDetailsServiceImplementation;
 import jakarta.annotation.PostConstruct;
@@ -22,32 +21,40 @@ import java.util.Date;
 @Component
 public class UserAuthenticationProvider {
 
-    @Value("${security.jwt.token.secret-key: secret-value}")
+    @Value("${security.jwt.token.secret-key:secret-key}")
     private String secretKey;
 
     private final UserDetailsServiceImplementation userDetailsServiceImplementation;
 
     @PostConstruct
     protected void init() {
+        // this is to avoid having the raw secret key available in the JVM
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(String email) {
-        Date date = new Date();
-        Date validity = new Date(date.getTime() + 3_600_000);
+    public String createToken(String login) {
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + 3600000); // 1 hour
 
+        Algorithm algorithm = Algorithm.HMAC256(secretKey);
         return JWT.create()
-                .withIssuer(email)
-                .withIssuedAt(date)
+                .withIssuer(login)
+                .withIssuedAt(now)
                 .withExpiresAt(validity)
-                .sign(Algorithm.HMAC256(secretKey));
+                .sign(algorithm);
     }
 
     public Authentication validateToken(String token) {
-        JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secretKey)).build();
-        DecodedJWT decodedJWT = verifier.verify(token);
-        UserDTO user = userDetailsServiceImplementation.findByEmail(decodedJWT.getIssuer());
+        Algorithm algorithm = Algorithm.HMAC256(secretKey);
+
+        JWTVerifier verifier = JWT.require(algorithm)
+                .build();
+
+        DecodedJWT decoded = verifier.verify(token);
+
+        UserDTO user = userDetailsServiceImplementation.findByEmail(decoded.getIssuer());
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
+
 }

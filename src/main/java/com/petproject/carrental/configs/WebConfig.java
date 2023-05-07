@@ -1,6 +1,5 @@
 package com.petproject.carrental.configs;
 
-import org.springframework.web.filter.CorsFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Arrays;
@@ -38,6 +38,7 @@ public class WebConfig {
         source.registerCorsConfiguration("/**", config);
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
 
+        // should be set order to -100 because we need to CorsFilter before SpringSecurityFilter
         bean.setOrder(CORS_FILTER_ORDER);
         return bean;
     }

@@ -1,28 +1,28 @@
 package com.petproject.carrental.models.car;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
-
-@Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Table(name = "car")
+@Entity
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    @Column(name = "id", nullable = false)
+    private Long id;
     @Column(name = "automobile_factory")
-    String automobileFactory;
-    String model;
-    int year;
-    int price;
+    private String automobileFactory;
+    private String model;
+    private int year;
+    private int price;
     @Column(name = "available_for_booking")
-    Boolean availableForBooking;
+    private Boolean availableForBooking;
     @Column(name = "car_classification_id")
-    int carClassificationId;
+    private int carClassificationId;
 
     public Car(String automobileFactory, String model, int year, int price, Boolean availableForBooking, int carClassificationId) {
         this.automobileFactory = automobileFactory;

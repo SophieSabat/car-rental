@@ -59,11 +59,11 @@ CREATE TABLE IF NOT EXISTS roles_privileges
 CREATE TABLE IF NOT EXISTS user
 (
     id              INTEGER     NOT NULL AUTO_INCREMENT,
-    password        VARCHAR(10) NOT NULL,
-    email           VARCHAR(25) NOT NULL,
     first_name      VARCHAR(25) NOT NULL,
     last_name       VARCHAR(25) NOT NULL,
-    phone_number    VARCHAR(13) NOT NULL,
+    password        VARCHAR(60) NOT NULL,
+    email           VARCHAR(25) NOT NULL,
+    phone_number    VARCHAR(13) ,
     passport_number VARCHAR(10) DEFAULT NULL,
     is_enable       BOOLEAN     DEFAULT false,
 
