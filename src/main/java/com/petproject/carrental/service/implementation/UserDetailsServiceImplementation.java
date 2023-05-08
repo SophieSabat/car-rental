@@ -22,7 +22,7 @@ import java.util.Optional;
 public class UserDetailsServiceImplementation implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapperImplementation;
+    private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -43,7 +43,7 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
 
-        return userMapperImplementation.toDto(user);
+        return userMapper.toDto(user);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
 
         if (passwordEncoder.matches(CharBuffer.wrap(credentialsDTO.getPassword()), user.getPassword())) {
-            return userMapperImplementation.toDto(user);
+            return userMapper.toDto(user);
         }
 
         throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
@@ -66,10 +66,10 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
             throw new AppException("Login already exists", HttpStatus.BAD_REQUEST);
         }
 
-        User user = userMapperImplementation.signUpToUser(userDTO);
+        User user = userMapper.signUpToUser(userDTO);
         user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userDTO.getPassword())));
         userRepository.save(user);
 
-        return userMapperImplementation.toDto(user);
+        return userMapper.toDto(user);
     }
 }
