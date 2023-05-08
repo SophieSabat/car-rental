@@ -1,7 +1,7 @@
-package com.petproject.carrental.controllers;
+package com.petproject.carrental.controller;
 
-import com.petproject.carrental.models.car.Car;
-import com.petproject.carrental.services.CarDetailsService;
+import com.petproject.carrental.model.car.Car;
+import com.petproject.carrental.service.CarDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

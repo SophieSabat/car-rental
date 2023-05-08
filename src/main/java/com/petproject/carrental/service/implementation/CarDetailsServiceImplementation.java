@@ -1,8 +1,8 @@
-package com.petproject.carrental.services.implementation;
+package com.petproject.carrental.service.implementation;
 
-import com.petproject.carrental.models.car.Car;
+import com.petproject.carrental.model.car.Car;
 import com.petproject.carrental.repository.CarRepository;
-import com.petproject.carrental.services.CarDetailsService;
+import com.petproject.carrental.service.CarDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

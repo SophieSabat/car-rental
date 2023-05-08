@@ -1,4 +1,4 @@
-package com.petproject.carrental.configs;
+package com.petproject.carrental.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

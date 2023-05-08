@@ -1,6 +1,6 @@
 package com.petproject.carrental.repository;
 
-import com.petproject.carrental.models.user.User;
+import com.petproject.carrental.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

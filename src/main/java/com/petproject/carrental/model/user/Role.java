@@ -1,4 +1,4 @@
-package com.petproject.carrental.models.user;
+package com.petproject.carrental.model.user;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,4 +1,4 @@
-package com.petproject.carrental.exeptions;
+package com.petproject.carrental.exception;
 
 import com.petproject.carrental.dto.ErrorDTO;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class RestExceptionHandler {
 
-    @ExceptionHandler(value = {AppExeption.class})
+    @ExceptionHandler(value = {AppException.class})
     @ResponseBody
-    public ResponseEntity<ErrorDTO> handleException(AppExeption exeption) {
+    public ResponseEntity<ErrorDTO> handleException(AppException exeption) {
         return ResponseEntity.status(exeption.getCode())
                 .body(ErrorDTO.builder().message(exeption.getMessage()).build());
     }

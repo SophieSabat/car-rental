@@ -1,4 +1,4 @@
-package com.petproject.carrental.configs;
+package com.petproject.carrental.config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.petproject.carrental.models.order;
+package com.petproject.carrental.model.order;
 
 public enum OrederStatus {
     ORDER_STATUS_OPENED,

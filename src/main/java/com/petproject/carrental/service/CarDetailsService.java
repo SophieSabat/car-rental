@@ -1,6 +1,6 @@
-package com.petproject.carrental.services;
+package com.petproject.carrental.service;
 
-import com.petproject.carrental.models.car.Car;
+import com.petproject.carrental.model.car.Car;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

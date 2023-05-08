@@ -1,12 +1,12 @@
-package com.petproject.carrental.exeptions;
+package com.petproject.carrental.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class AppExeption extends RuntimeException {
+public class AppException extends RuntimeException {
 
     private final HttpStatus code;
 
-    public AppExeption(String message, HttpStatus code) {
+    public AppException(String message, HttpStatus code) {
         super(message);
         this.code = code;
     }

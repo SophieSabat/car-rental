@@ -1,4 +1,4 @@
-package com.petproject.carrental.models.order;
+package com.petproject.carrental.model.order;
 
 import jakarta.persistence.*;
 import lombok.*;

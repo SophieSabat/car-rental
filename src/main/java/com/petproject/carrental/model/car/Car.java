@@ -1,4 +1,4 @@
-package com.petproject.carrental.models.car;
+package com.petproject.carrental.model.car;
 
 import jakarta.persistence.*;
 import lombok.*;

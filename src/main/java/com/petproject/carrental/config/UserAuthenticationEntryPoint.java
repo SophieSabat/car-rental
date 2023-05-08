@@ -1,4 +1,4 @@
-package com.petproject.carrental.configs;
+package com.petproject.carrental.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petproject.carrental.dto.ErrorDTO;

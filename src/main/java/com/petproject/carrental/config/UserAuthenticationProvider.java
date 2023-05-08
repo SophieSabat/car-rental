@@ -1,11 +1,11 @@
-package com.petproject.carrental.configs;
+package com.petproject.carrental.config;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.petproject.carrental.dto.UserDTO;
-import com.petproject.carrental.services.implementation.UserDetailsServiceImplementation;
+import com.petproject.carrental.service.UserDetailsService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +24,7 @@ public class UserAuthenticationProvider {
     @Value("${security.jwt.token.secret-key:secret-key}")
     private String secretKey;
 
-    private final UserDetailsServiceImplementation userDetailsServiceImplementation;
+    private final UserDetailsService userDetailsService;
 
     @PostConstruct
     protected void init() {
@@ -52,7 +52,7 @@ public class UserAuthenticationProvider {
 
         DecodedJWT decoded = verifier.verify(token);
 
-        UserDTO user = userDetailsServiceImplementation.findByEmail(decoded.getIssuer());
+        UserDTO user = userDetailsService.findByEmail(decoded.getIssuer());
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
