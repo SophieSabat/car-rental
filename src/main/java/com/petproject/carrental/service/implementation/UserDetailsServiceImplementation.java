@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.nio.CharBuffer;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -59,11 +60,11 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
 
     @Override
     public UserDTO register(SingUpDTO userDTO) {
-//        Optional<User> optionalUser = userRepository.findByEmail(userDTO.getEmail());
+        Optional<User> optionalUser = userRepository.findByEmail(userDTO.getEmail());
 
-//        if (optionalUser.) {
-//            throw new AppException("Login already exists", HttpStatus.BAD_REQUEST);
-//        }
+        if (optionalUser.isPresent()) {
+            throw new AppException("Login already exists", HttpStatus.BAD_REQUEST);
+        }
 
         User user = userMapperImplementation.signUpToUser(userDTO);
         user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userDTO.getPassword())));
